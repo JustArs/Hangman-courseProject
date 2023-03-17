@@ -1,17 +1,19 @@
 from random import randint
+from  random_word  import  RandomWords
 
 def split(s):
     return [char for char in s]
 
 def HangmanTerm():
-
-    words = ["write", "change", "squirrel", "title"]
-    wordid = randint(0,3)
-    print("wordid......", wordid)
-    selWord = words[wordid]
-    print("selWord.....", selWord)
-    letters = split(selWord)
-    print(letters)
+    r  =  RandomWords ()
+    wor = r.get_random_word()
+    while len(wor) > 9:
+        wor = r.get_random_word()
+    print (len(wor)) 
+    print("Your word: ",wor)
+    letter = split(wor)
+    print(letter)
+    
 
 def main():
     HangmanTerm()
