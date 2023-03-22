@@ -7,11 +7,12 @@ def HangmanTerm():
 
     words = ["write", "change", "squirrel", "title"]
     wordid = randint(0,3)
-    print("wordid......", wordid)
+    #print("wordid......", wordid)
     selWord = words[wordid]
-    print("selWord.....", selWord)
+    #print("selWord.....", selWord)
     letters = split(selWord)
-    print(letters)
+    #print(letters)
+    return(letters)
 
 def main():
     HangmanTerm()
