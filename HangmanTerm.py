@@ -22,6 +22,7 @@ def HangmanTerm():
     print(letter)
     
     
+    
     newArr = []
     for i in range(len(wor)) :
         newArr.append("?")
