@@ -1,41 +1,15 @@
 import tkinter as tk
 from random import randint
 from HangmanTerm import HangmanTerm as ht
-
-root = tk.Tk()
-
-root.title("Hangman")
-root.geometry("1280x720")
-root["bg"] = "#ffef9b"
-root.resizable(width=False, height=False)
-
-HangTxtImg = tk.PhotoImage(file = "splashscr.png")
-Hangimg = tk.Label(root, image=HangTxtImg, bg="#ffef9b",)
-Hangimg.place(x=330, y=20)
-
-def startPress():
-    Hangimg.destroy()
-    startBut.destroy()
-
-startBut = tk.Button(text="START", 
-                     borderwidth=0, 
-                     cursor="hand2",
-                     activebackground="#ffca69",
-                     bg="#ffef9b",
-                     font="Century 45",
-                     justify="center",
-                     command=startPress
-                     )
-startBut.place(x=516,y=340)
-
-=======
-import tkinter as tk
-from random import randint
-from HangmanTerm import HangmanTerm as ht
+from HangmanTerm import secret 
 
 mistakes = 1
 r = ht() #Используемое слово
 print(r) #Тестовый вывод слова
+
+newArr = []
+for i in range(len(r)) :
+    newArr.append("  ?  ")
 
 root = tk.Tk()
 
@@ -52,6 +26,7 @@ def FindLetter(letter, letters):
     global mistakes
     if letter in r:
         print(letter, " - yes!!")
+        
     else:
         mistakes += 1
         print(letter, " - No!!")
@@ -88,10 +63,10 @@ def gameProcess():
     global mistakes
     mistakes=7
     nx=600
-    letters = ht()
-    for i in letters:
+    letters = r
+    for i in newArr:
         tk.Label(root, 
-                 text="   ?   ",
+                 text=i,
                  bg="#ffef9b",
                  font=("Arial Bold", 20),
                  borderwidth=2,

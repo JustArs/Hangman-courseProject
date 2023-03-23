@@ -16,21 +16,15 @@ def HangmanTerm():
     wor = r.get_random_word()
     while len(wor) > 9:
         wor = r.get_random_word()
-    print (len(wor)) 
-    print("Your word: ",wor)
     letter = split(wor)
-    print(letter)
+
+
+
+    return(letter)
     
     
     
-    newArr = []
-    for i in range(len(wor)) :
-        newArr.append("?")
     
-    print (newArr)
-    print (newArr)
-    b = secret("a",newArr,wor)
-    print (b)
 
 def main():
     HangmanTerm()
