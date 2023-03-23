@@ -32,8 +32,6 @@ def HangmanTerm():
     b = secret("a",newArr,wor)
     print (b)
 
-    
-
 def main():
     HangmanTerm()
 
