@@ -7,6 +7,7 @@ mistakes = 1
 r = ht() #Используемое слово
 print(r) #Тестовый вывод слова
 
+b = []
 newArr = []
 for i in range(len(r)) :
     newArr.append("  ?  ")
@@ -22,14 +23,51 @@ HangTxtImg = tk.PhotoImage(file = "splashscr.png")
 Hangimg = tk.Label(root, image=HangTxtImg, bg="#ffef9b")
 Hangimg.place(x=330, y=20)
 
+def imgPrint():
+    img_label = tk.Label(root, bg="#ffef9b")
+    img_label.image = tk.PhotoImage(file="assets/h"+str(mistakes)+".png")
+    print("file=assets/h"+str(mistakes)+".png")
+    img_label['image'] = img_label.image
+    img_label.place(x=50, y=70)
+
+def secretTales():
+    nx=600
+    for i in newArr:
+        tk.Label(root, 
+                text=i,
+                bg="#ffef9b",
+                font=("Arial Bold", 20),
+                borderwidth=2,
+                relief="solid"
+                ).place(x=nx, y=460)
+        nx+=80
+
 def FindLetter(letter, letters):
+
+    global newArr
     global mistakes
+
+    for widget in root.winfo_children():
+        widget.destroy()
+
     if letter in r:
         print(letter, " - yes!!")
+        newArr = secret(letter, newArr, r)
+        secretTales()
+        alphabetPrint()
+        imgPrint()
+        print(newArr)
         
     else:
-        mistakes += 1
+        if mistakes < 7:
+            mistakes += 1
         print(letter, " - No!!")
+        secretTales()
+        alphabetPrint()
+        imgPrint()
+
+    changing = 0
+    
 
 def alphabetPrint():
     tk.Button(root, text = "A", font="Century 16", command=lambda:FindLetter("a", ht)).place(x=600,y=120)
@@ -60,24 +98,8 @@ def alphabetPrint():
     tk.Button(root, text = "Z", font="Century 16", command=lambda:FindLetter("z", ht)).place(x=880,y=300)
 
 def gameProcess():
-    global mistakes
-    mistakes=7
-    nx=600
-    letters = r
-    for i in newArr:
-        tk.Label(root, 
-                 text=i,
-                 bg="#ffef9b",
-                 font=("Arial Bold", 20),
-                 borderwidth=2,
-                 relief="solid"
-                 ).place(x=nx, y=460)
-        nx+=80
-    img_label = tk.Label(root, bg="#ffef9b")
-    img_label.image = tk.PhotoImage(file="assets/h"+str(mistakes)+".png")
-    img_label['image'] = img_label.image
-    img_label.place(x=50, y=70)
-
+    secretTales()
+    imgPrint()
     alphabetPrint()
 
 def startPress():
