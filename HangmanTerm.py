@@ -14,7 +14,7 @@ def secret(letter,SecrWord,word):
 def HangmanTerm():
     r  =  RandomWords ()
     wor = r.get_random_word()
-    while len(wor) > 9:
+    while len(wor) > 7:
         wor = r.get_random_word()
     letter = split(wor)
 
