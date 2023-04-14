@@ -5,9 +5,10 @@ from HangmanTerm import secret
 
 mistakes = 1
 rightLets = 1
-r = ht()
+word = ht()
+print(word)
 newArr = []
-for i in range(len(r)) :
+for i in range(len(word)) :
     newArr.append("  ?  ")
 
 clicked = {}
@@ -28,6 +29,11 @@ root.resizable(width=True, height=True)
 HangTxtImg = tk.PhotoImage(file = "splashscr.png")
 Hangimg = tk.Label(root, image=HangTxtImg, bg="#ffef9b")
 Hangimg.place(x=330, y=20)
+
+def UpdateWidgets():
+    secretTales()
+    alphabetPrint()
+    imgPrint()
 
 def ClearScreen():
     for widget in root.winfo_children():
@@ -55,7 +61,7 @@ def secretTales():
 
 def checkToWin():
     global mistakes
-    global r
+    global word
     global newArr
     global rightLets
     if mistakes == 9:
@@ -64,9 +70,9 @@ def checkToWin():
                  text = "You lose!", 
                  font="Century 16", 
                  bg="#ffef9b").pack()
-        r = ht()
+        word = ht()
         newArr = []
-        for i in range(len(r)) :
+        for i in range(len(word)) :
             newArr.append("  ?  ")
         StartButPrint()
         imgPrint()
@@ -82,9 +88,9 @@ def checkToWin():
                  text = "You win!", 
                  font="Century 16", 
                  bg="#ffef9b").pack()
-        r = ht()
+        word = ht()
         newArr = []
-        for i in range(len(r)) :
+        for i in range(len(word)) :
             newArr.append("  ?  ")
         StartButPrint()
         imgPrint()
@@ -93,38 +99,43 @@ def checkToWin():
         for i in range(97, 123): #all chars
             clicked[chr(i)] = 0
             letters[chr(i)] = None 
-        
-def FindLetter(letter):
+
+def FindLetterBack(letter):
 
     global newArr
     global mistakes
     global rightLets
-    print("Mistakes = ", mistakes)
-    print("RightLets = ", rightLets)
-
-    ClearScreen()
+    #print("Mistakes = ", mistakes)
+    #print("RightLets = ", rightLets)
     
-    if letter in r:
+    if letter in word:
         # print(letter, " - yes!!")
-        newArr = secret(letter, newArr, r)
+        newArr = secret(letter, newArr, word)
         rightLets += 1
-        secretTales()
-        alphabetPrint()
-        imgPrint()
-        print(newArr)
-        
+        # UpdateWidgets()
+        #print(newArr)
+    
     else:
         if mistakes < 9:
             mistakes += 1
         # print(letter, " - No!!")
-        secretTales()
-        alphabetPrint()
-        imgPrint()
+        # UpdateWidgets()
+
+    return mistakes,rightLets
     checkToWin()
 
+def FindLetterFront(letter):
+    ClearScreen()
+    if letter in word:
+        # print(letter, " - yes!!")
+        UpdateWidgets()
+        #print(newArr)
+    elif mistakes < 9:
+        # print(letter, " - No!!")
+        UpdateWidgets()
+    checkToWin()
 
-
-def switchLetter(letter):
+def DisableLetter(letter):
     global letters
     global clicked
     clicked[letter] = 1
@@ -137,7 +148,7 @@ def alphabetPrint():
     for i in range(97, 123):
         a = i - 96
         letters[chr(i)] = tk.Button(root, text = chr(i), font="Century 16")
-        letters[chr(i)]['command'] = lambda arg=chr(i) : [switchLetter(arg), FindLetter(arg)]
+        letters[chr(i)]['command'] = lambda arg=chr(i) : [DisableLetter(arg), FindLetterBack(arg), FindLetterFront(arg)]
         
         if clicked[chr(i)]:
             letters[chr(i)]["state"] = tk.DISABLED
