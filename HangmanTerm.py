@@ -18,8 +18,6 @@ def HangmanTerm():
         wor = r.get_random_word()
     letter = split(wor)
 
-
-
     return(letter)
     
  #--------------------------------

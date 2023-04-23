@@ -93,11 +93,12 @@ def FindLetterBack(letter):
     if letter in word:
         newArr = secret(letter, newArr, word)
         rightLets += 1   
+        print(rightLets)
+        return rightLets
     else:
         if mistakes < 9:
             mistakes += 1
-    
-    return mistakes,rightLets
+            return mistakes
 
 
 def FindLetterFront(letter):
@@ -162,4 +163,10 @@ def StartButPrint():
 
 StartButPrint()
 
-root.mainloop()
+
+
+if __name__ == "__main__":
+	root.mainloop()
+        
+else:
+    word = "test"
