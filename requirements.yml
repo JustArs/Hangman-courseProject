@@ -2,7 +2,6 @@ channels:
 - defaults
 - free
 dependencies:
-- conda-forge::poppler=22.04.0
 - tk
 - pytest
-- random-word
+- Random-Word-Generator
