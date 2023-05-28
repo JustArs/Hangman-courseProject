@@ -1,0 +1,7 @@
+channels: !!python/tuple
+- default
+- free
+dependencies:
+- tk
+- pytest
+- Random-Word
