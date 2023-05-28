@@ -4,4 +4,4 @@ channels:
 dependencies:
 - tk
 - pytest
-- Random-Word-Generator
+
