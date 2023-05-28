@@ -1,7 +1,4 @@
-channels: 
-- defaults
-- free
-dependencies:
 - tk
 - pytest
+- Random-Word
 
